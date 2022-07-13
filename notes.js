@@ -17,6 +17,7 @@ class Notes {
       console.log(chalk.bgRed('Note title taken!'));
     }
   }
+
   removeNote(title) {
     const notes = this.loadNotes();
     const newNotes = notes.filter((note) => note.title !== title);
@@ -28,17 +29,20 @@ class Notes {
       console.log(chalk.bgGreen.bold('Removed', title, 'note'));
     }
   }
-  readNote(title) {
+
+  readNote = (title) => {
     const notes = this.loadNotes();
     const note = notes.find((note) => note.title === title);
     console.log(note.body);
-  }
+  };
+
   listNotes() {
     const noteList = this.loadNotes();
     noteList.forEach((note) =>
       console.log(`Title: ${note.title}\n${note.body}`)
     );
   }
+
   loadNotes() {
     try {
       const dataBuffer = fs.readFileSync('notes.json');
@@ -48,9 +52,10 @@ class Notes {
       return [];
     }
   }
+  
   saveNotes(notes) {
     const dataJSON = JSON.stringify(notes);
-    fs.writeFileSync('notes.json', dataJSON);
+    fs.writeFileSync('notes.json', dataJsON);
   }
 }
 

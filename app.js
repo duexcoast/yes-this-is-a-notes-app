@@ -40,7 +40,19 @@ yargs.command(
 yargs.command('list', 'List the notes', () => {
   notes.listNotes();
 });
-yargs.command('read', 'Read the notes', (argv) => {
-  notes.readNote(argv.title);
-});
+
+// READ COMMAND
+yargs.command(
+  'read',
+  'Read the notes',
+  {
+    title: {
+      describe: 'Note title',
+      demandOption: true,
+    },
+  },
+  (argv) => {
+    notes.readNote(argv.title);
+  }
+);
 yargs.parse();
